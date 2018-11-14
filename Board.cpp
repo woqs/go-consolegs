@@ -6,25 +6,14 @@
 
 using namespace std;
 
-Board::Board(int size)
-{
-    this->size = size;
-    this->stars = this->starsCoordinates[size];
-}
-
 Board::~Board()
 {
 }
 
-void Board::setupGame(Game game)
-{
-    printBoard(game);
-}
-
-void Board::printBoard(Game game)
+void Board::showGame()
 {
     printFirstLine();
-    printGoban(game);
+    printGoban();
 }
 
 void Board::printFirstLine()
@@ -36,7 +25,7 @@ void Board::printFirstLine()
     cout << "\n";
 }
 
-void Board::printGoban(Game game)
+void Board::printGoban()
 {
     string preC;
     string postC;

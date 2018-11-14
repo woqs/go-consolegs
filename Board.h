@@ -10,13 +10,16 @@
 class Board
 {
 public:
-    Board(int size);
+    Board(Game game): game(game) {
+        this->size = game.size;
+        this->stars = this->starsCoordinates[game.size];
+    };
     ~Board();
-    void setupGame(Game game);
+    void showGame();
 private:
-    void printBoard(Game game);
     void printFirstLine();
-    void printGoban(Game game);
+    void printGoban();
+    Game game;
     int size;
     std::vector<Coordinate> stars;
     char letters[19] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'O', 'N', 'P', 'Q', 'R', 'S'};

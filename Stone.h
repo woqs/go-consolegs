@@ -6,9 +6,9 @@
 class Stone
 {
 public:
-    char color;
+    bool color;
     Coordinate coordinate;
-    Stone(char color, Coordinate coordinate): color(color), coordinate(coordinate) {};
+    Stone(bool color, Coordinate *coordinate): color(color), coordinate(*coordinate) {};
     ~Stone();
 };
 
