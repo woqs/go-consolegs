@@ -32,7 +32,14 @@ void Board::printGoban()
     for(int line=1; line<=this->size; ++line) {
         cout << "     ";
         for(int column=0; column<this->size; ++column) {
-            if(line > 1) {
+            if (find_if(
+                    this->game.stoneHisto.begin(), this->game.stoneHisto.end(), [this, column, line](Stone* s) {
+                        return s->coordinate.letter == this->letters[column] && s->coordinate.line == line;
+                    }
+                ) != this->game.stoneHisto.end()
+            ) {
+                cout << "-BBB-";
+            } else if(line > 1) {
                 cout << "  |  ";
             }        
         }

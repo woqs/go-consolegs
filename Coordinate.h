@@ -9,6 +9,7 @@ public:
     Coordinate(char letter, int line);
     ~Coordinate();
     bool operator == (const Coordinate &c2);
+    bool operator< (const Coordinate &c2)const;
 };
 
 #endif // COORDINATE_H
