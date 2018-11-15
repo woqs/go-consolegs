@@ -19,8 +19,11 @@ public:
     const bool COLOR_BLACK = 0;
     const bool COLOR_WHITE = 1;
 private:
-    void printFirstLine();
     void printGoban();
+    void printFirstLine();
+    void printFirstLinePart(int line);
+    void printSecondLinePart(int line);
+    void printThirdLinePart(int line);
     Game game;
     int size;
     std::vector<Coordinate> stars;
