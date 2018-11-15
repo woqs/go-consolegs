@@ -29,40 +29,70 @@ void Board::printGoban()
 {
     string preC;
     string postC;
+    string printedStone;
+    bool found = false;
+    bool color = false;
+    // a goban line is 3 lines tall, and 5 characters wide
     for(int line=1; line<=this->size; ++line) {
+        //first part
         cout << "     ";
         for(int column=0; column<this->size; ++column) {
-            if (find_if(
-                    this->game.stoneHisto.begin(), this->game.stoneHisto.end(), [this, column, line](Stone* s) {
-                        return s->coordinate.letter == this->letters[column] && s->coordinate.line == line;
-                    }
-                ) != this->game.stoneHisto.end()
-            ) {
-                cout << "-BBB-";
+            for(auto stone : this->game.stoneBoard) {
+                if(stone.first.line == line && stone.first.letter == this->letters[column]) {
+                    color = stone.second;
+                    found = true;
+                }
+            }
+            if(found) {
+                printedStone = (color==this->COLOR_BLACK)? " \e[41m   \e[0m " : " \e[47m   \e[0m ";
+                cout << printedStone;
             } else if(line > 1) {
                 cout << "  |  ";
-            }        
+            }
+            found = false;
         }
         cout << endl;
 
+        //second part
         preC = (line<10)? "  ":" ";
         cout << preC << line << "  ";
         for(int column=0; column<this->size; ++column) {
-            if (find(stars.begin(), stars.end(), Coordinate(this->letters[column], line)) != stars.end()) {
-                cout << "--" << "\033[1;37mO\033[0m" << "--";
+            for(auto stone : this->game.stoneBoard) {
+                if(stone.first.line == line && stone.first.letter == this->letters[column]) {
+                    color = stone.second;
+                    found = true;
+                }
+            }
+            if(found) {
+                printedStone = (color==this->COLOR_BLACK)? "\e[41m     \e[0m" : "\e[47m     \e[0m";
+                cout << printedStone;
+            } else if (find(stars.begin(), stars.end(), Coordinate(this->letters[column], line)) != stars.end()) {
+                cout << "--" << "\033[0;37mO\033[0m" << "--";
             } else {
                 preC = (column==0)? "  ":"--";
                 postC = (column==this->size-1)? "  ":"--";
                 cout << preC << "+" << postC;
             }
+            found = false;
         }
         cout << endl;
 
+        //thrid part
         cout << "     ";
         for(int column=0; column<this->size; ++column) {
-            if(line < this->size) {
+            for(auto stone : this->game.stoneBoard) {
+                if(stone.first.line == line && stone.first.letter == this->letters[column]) {
+                    color = stone.second;
+                    found = true;
+                }
+            }
+            if(found) {
+                printedStone = (color==this->COLOR_BLACK)? " \e[41m   \e[0m " : " \e[47m   \e[0m ";
+                cout << printedStone;
+            } else if(line < this->size) {
                 cout << "  |  ";
             }
+            found = false;
         }
         cout << endl;
     }

@@ -16,6 +16,8 @@ public:
     };
     ~Board();
     void showGame();
+    const bool COLOR_BLACK = 0;
+    const bool COLOR_WHITE = 1;
 private:
     void printFirstLine();
     void printGoban();
