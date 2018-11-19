@@ -11,9 +11,9 @@ class Game
 {
 public:
     int size;
-    std::vector<Stone*> stoneHisto;
+    std::vector<Stone> stoneHisto;
     std::map<Coordinate, bool> stoneBoard;
-    void addStone(Stone* stone);
+    void addStone(Stone stone);
     Game(int size): size(size) {};
     ~Game();
 private:

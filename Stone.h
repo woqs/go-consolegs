@@ -8,7 +8,7 @@ class Stone
 public:
     bool color;
     Coordinate coordinate;
-    Stone(bool color, Coordinate* coordinate): color(color), coordinate(*coordinate) {};
+    Stone(bool color, Coordinate coordinate): color(color), coordinate(coordinate) {};
     ~Stone();
     bool operator == (const Stone &s2);
 };

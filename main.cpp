@@ -4,8 +4,11 @@
 int main(int argc, char *argv[])
 {
     Game game(9);
-    game.addStone(new Stone(0, new Coordinate('A', 1)));
-    game.addStone(new Stone(1, new Coordinate('A', 2)));
+    game.addStone(Stone(0, Coordinate('A', 1)));
+    game.addStone(Stone(1, Coordinate('A', 2)));
+    game.addStone(Stone(0, Coordinate('E', 4)));
+    game.addStone(Stone(1, Coordinate('A', 3)));
+    game.addStone(Stone(0, Coordinate('E', 6)));
     Board board(game);
     board.showGame();
 
