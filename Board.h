@@ -66,6 +66,8 @@ private:
             }
         }
     };
+    bool found = false;
+    bool color = false;
 };
 
 #endif // BOARD_H

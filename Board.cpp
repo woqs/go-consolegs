@@ -37,35 +37,30 @@ void Board::printGoban()
 
 void Board::printFirstLinePart(int line)
 {
-    bool found = false;
-    bool color = false;
     string printedStone;
-    string preC;
-    string postC;
     
     cout << "     ";
     for(int column=0; column<this->size; ++column) {
         for(auto stone : this->game.stoneBoard) {
             if(stone.first.line == line && stone.first.letter == this->letters[column]) {
-                color = stone.second;
-                found = true;
+                this->color = stone.second;
+                this->found = true;
+                break;
             }
         }
-        if(found) {
-            printedStone = (color==this->COLOR_BLACK)? " \e[41m   \e[0m " : " \e[47m   \e[0m ";
+        if(this->found) {
+            printedStone = (this->color==this->COLOR_BLACK)? " \e[41m   \e[0m " : " \e[47m   \e[0m ";
             cout << printedStone;
         } else if(line > 1) {
             cout << "  |  ";
         }
-        found = false;
+        this->found = false;
     }
     cout << endl;
 }
 
 void Board::printSecondLinePart(int line)
 {
-    bool found = false;
-    bool color = false;
     string printedStone;
     string preC;
     string postC;
@@ -75,12 +70,13 @@ void Board::printSecondLinePart(int line)
     for(int column=0; column<this->size; ++column) {
         for(auto stone : this->game.stoneBoard) {
             if(stone.first.line == line && stone.first.letter == this->letters[column]) {
-                color = stone.second;
-                found = true;
+                this->color = stone.second;
+                this->found = true;
+                break;
             }
         }
-        if(found) {
-            printedStone = (color==this->COLOR_BLACK)? "\e[41m     \e[0m" : "\e[47m     \e[0m";
+        if(this->found) {
+            printedStone = (this->color==this->COLOR_BLACK)? "\e[41m     \e[0m" : "\e[47m     \e[0m";
             cout << printedStone;
         } else if (find(stars.begin(), stars.end(), Coordinate(this->letters[column], line)) != stars.end()) {
             cout << "--" << "\033[0;37mO\033[0m" << "--";
@@ -89,7 +85,7 @@ void Board::printSecondLinePart(int line)
             postC = (column==this->size-1)? "  ":"--";
             cout << preC << "+" << postC;
         }
-        found = false;
+        this->found = false;
     }
     cout << endl;
     
@@ -97,27 +93,23 @@ void Board::printSecondLinePart(int line)
 
 void Board::printThirdLinePart(int line)
 {
-    bool found = false;
-    bool color = false;
     string printedStone;
-    string preC;
-    string postC;
 
     cout << "     ";
     for(int column=0; column<this->size; ++column) {
         for(auto stone : this->game.stoneBoard) {
             if(stone.first.line == line && stone.first.letter == this->letters[column]) {
-                color = stone.second;
-                found = true;
+                this->color = stone.second;
+                this->found = true;
             }
         }
-        if(found) {
-            printedStone = (color==this->COLOR_BLACK)? " \e[41m   \e[0m " : " \e[47m   \e[0m ";
+        if(this->found) {
+            printedStone = (this->color==this->COLOR_BLACK)? " \e[41m   \e[0m " : " \e[47m   \e[0m ";
             cout << printedStone;
         } else if(line < this->size) {
             cout << "  |  ";
         }
-        found = false;
+        this->found = false;
     }
     cout << endl;
 }
